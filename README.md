@@ -12,6 +12,7 @@ Docker Hub: https://hub.docker.com/r/jothiprasath2/qbittorrent-enhanced-edition
 * Auto Update Public Trackers List (Default: OFF)
 * Auto Ban BitTorrent Media Player Peer Option (Default: OFF)
 * Peer whitelist/blacklist
+* Dark theme
 
 Thanks to the following projects:
 
