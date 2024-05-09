@@ -33,6 +33,6 @@ curl -L -o ${PWD}/theme.zip https://github.com/Carve/qbittorrent-webui-cjratliff
 
 echo "Download theme file: ${TAG} completed"
 
-unzip myfile.zip -d ./tmp
+unzip theme.zip -d ./tmp
 mkdir theme
 mv ./tmp/*/* theme
