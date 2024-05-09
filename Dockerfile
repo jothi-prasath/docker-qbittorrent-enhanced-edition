@@ -26,6 +26,7 @@ XDG_DATA_HOME="/config"
 # add local files and install qbitorrent
 COPY root /
 COPY --from=builder  /qbittorrent/qbittorrent-nox   /usr/local/bin/qbittorrent-nox
+COPY --from=builder  /qbittorrent/theme   /theme
 
 # install python3
 RUN  apk add --no-cache python3 \

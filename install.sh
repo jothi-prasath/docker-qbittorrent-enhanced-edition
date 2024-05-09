@@ -24,3 +24,15 @@ curl -L -o ${PWD}/qbittorrent.zip https://github.com/c0re100/qBittorrent-Enhance
 echo "Download binary file: ${ARCH} completed"
 
 unzip qbittorrent.zip
+
+# Theme
+echo "Downloading theme file"
+TAG=$(wget -qO- https://api.github.com/repos/Carve/qbittorrent-webui-cjratliff.com/tags | grep 'name' | cut -d\" -f4 | head -1)
+echo "theme tag: ${TAG}"
+curl -L -o ${PWD}/theme.zip https://github.com/Carve/qbittorrent-webui-cjratliff.com/archive/refs/tags/$TAG.zip
+
+echo "Download theme file: ${TAG} completed"
+
+unzip myfile.zip -d ./tmp
+mkdir theme
+mv ./tmp/*/* theme
