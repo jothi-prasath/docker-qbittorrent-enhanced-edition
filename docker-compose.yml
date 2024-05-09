@@ -1,0 +1,17 @@
+version: "3.5"
+services:
+  qbittorrent:
+    image: jothiprasath2/qbittorrent-enhanced-edition
+    container_name: qbittorrent-enhanced-edition
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=Asia/Kolkata
+    volumes:
+      - /path/to/appdata/config:/config
+      - /path/to/downloads:/downloads
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 8080:8080
+    restart: unless-stopped

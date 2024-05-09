@@ -1,0 +1,71 @@
+name: Auto Build Docker Image
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 21 * * *'
+
+jobs:
+  version-check:
+    runs-on: ubuntu-latest
+    outputs:
+      status: ${{ steps.get-release-tag.outputs.status }}
+      version: ${{ steps.set-version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set Version
+        id: set-version
+        run: |
+          echo "version=$(cat ReleaseTag | head -n1)" >> "$GITHUB_OUTPUT"
+          echo "ReleaseTag=$(cat ReleaseTag | head -n1)"
+
+      - name: Cache tag
+        id: cache-tag
+        uses: actions/cache@v4
+        with:
+          path: ./tag/
+          key: ${{ runner.os }}-tag-v${{ steps.set-version.outputs.version }}
+
+      - name: Get latest release tag
+        id: get-release-tag
+        if: steps.cache-tag.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ./tag
+          echo ${{ steps.set-version.outputs.version }} > ./tag/tag-${{ steps.set-version.outputs.version }}
+          echo "status=success" >> "$GITHUB_OUTPUT"
+  build:
+    if: needs.version-check.outputs.status == 'success'
+    needs: version-check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          file: ./Dockerfile
+          platforms: linux/amd64, linux/arm64
+          push: true
+          tags: |
+            jothiprasath2/qbittorrent-enhanced-edition:${{ needs.version-check.outputs.version }}
+            jothiprasath2/qbittorrent-enhanced-edition:latest
+
+      - name: Update repo description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: jothiprasath2/qbittorrent-enhanced-edition
+

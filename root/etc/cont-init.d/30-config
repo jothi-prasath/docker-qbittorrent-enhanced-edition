@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bash
+
+if [ ! -e "/config/qBittorrent/config/qBittorrent.conf" ] ;  then 
+mkdir -p /config/qBittorrent/config/
+cp /usr/local/qbittorrent/defaults/qBittorrent.conf  /config/qBittorrent/config/qBittorrent.conf
+fi
+
+if [ ! -d "/config/qBittorrent/data/nova3/engines" ] ;  then 
+mkdir -p /config/qBittorrent/data/nova3/engines
+fi
+cp -ru /usr/local/qbittorrent/defaults/Search/*  /config/qBittorrent/data/nova3/engines
+
+# permissions
+chown -R abc:abc \
+	/config 
