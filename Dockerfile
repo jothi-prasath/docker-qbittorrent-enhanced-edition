@@ -19,6 +19,9 @@ FROM lsiobase/alpine:edge
 # environment settings
 ENV TZ=Asia/Kolkata
 ENV WEBUIPORT=8080
+ENV HOME="/config" \
+XDG_CONFIG_HOME="/config" \
+XDG_DATA_HOME="/config"
 
 # add local files and install qbitorrent
 COPY root /
