@@ -1,9 +1,12 @@
 # qBittorrent Enhanced Edition
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/New_qBittorrent_Logo.svg/240px-New_qBittorrent_Logo.svg.png)
+![logo](https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/New_qBittorrent_Logo.svg/240px-New_qBittorrent_Logo.svg.png)
 
-Github: https://github.com/jothi-prasath/docker-qbittorrent-enhanced-edition 
-Docker Hub: https://hub.docker.com/r/jothiprasath2/qbittorrent-enhanced-edition
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/jothi-prasath/docker-qbittorrent-enhanced-edition/Auto%20Build%20Docker%20Image.yml)](https://github.com/jothi-prasath/docker-qbittorrent-enhanced-edition/actions/workflows/Auto%20Build%20Docker%20Image.yml)
+[![Docker Image Version](https://img.shields.io/docker/v/jothiprasath2/qbittorrent-enhanced-edition)](https://hub.docker.com/r/jothiprasath2/qbittorrent-enhanced-edition) <br>
+
+Github: https://github.com/jothi-prasath/docker-qbittorrent-enhanced-edition <br>
+Docker Hub: https://hub.docker.com/r/jothiprasath2/qbittorrent-enhanced-edition <br>
 
 ## Features
 
