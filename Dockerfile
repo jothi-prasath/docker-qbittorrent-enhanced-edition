@@ -1,4 +1,4 @@
-FROM lsiobase/alpine:edge as builder
+FROM lsiobase/alpine:edge AS builder
 LABEL maintainer="Jothi Prasath <jothiprasath2@gmail.com>"
 
 WORKDIR /qbittorrent
