@@ -43,7 +43,7 @@ services:
     container_name: qbittorrent-enhanced-edition
     environment:
       - PUID=1000
-      - PGID=100
+      - PGID=1000
       - TZ=Asia/Kolkata
     volumes:
       - /path/to/appdata/config:/config
@@ -62,7 +62,7 @@ docker run -d \
     --name=qbittorrent-enhanced-edition  \
     -e WEBUIPORT=8080  \
     -e PUID=1000 \
-    -e PGID=100 \
+    -e PGID=1000 \
     -e TZ=Asia/Kolkata \
     -p 6881:6881  \
     -p 6881:6881/udp  \
